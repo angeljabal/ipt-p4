@@ -24,9 +24,10 @@ class ItemController extends Controller
 
     public function store(Request $request){
         $this->validate($request, $this->rules());
+
         $item = Item::create($request->all());
 
-        $log_entry = 'User added the item "' . $item->name . '" with ID#' . $item->id;
+        $log_entry = 'Added an item "' . $item->name . '" with ID#' . $item->id;
         event(new UserLog($log_entry));
 
         return redirect('/items')->with('Message', 'New item has been added');   
@@ -40,7 +41,7 @@ class ItemController extends Controller
         $this->validate($request, $this->rules());
         $item->update($request->all());
 
-        $log_entry = 'User updated the item "' . $item->name . '" with ID#' . $item->id;
+        $log_entry = 'Updated an item "' . $item->name . '" with ID#' . $item->id;
         event(new UserLog($log_entry));
 
         return redirect('/items')->with('Message', "Updated Successfully!");   
@@ -60,7 +61,7 @@ class ItemController extends Controller
         $item = Item::find($itemId);
         $item->delete();
 
-        $log_entry = 'User deleted the item "' . $item->name . '" with ID#' . $item->id;
+        $log_entry = 'Deleted an item "' . $item->name . '" with ID#' . $item->id;
         event(new UserLog($log_entry));
 
         return  redirect('/items')->with('Message', "The item $item->name has been deleted successfully.");   

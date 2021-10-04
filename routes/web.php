@@ -21,7 +21,6 @@ Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 Route::get('/verification/{user}/{token}', 'AuthController@verification');
 
-
 Route::get('/items', 'ItemController@index');
 Route::get('/items/create', 'ItemController@create');
 Route::post('/items', 'ItemController@store');
